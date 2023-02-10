@@ -22,7 +22,7 @@ export default function Excel() {
       >
         <GridToolbar>
            <button
-            title="Export Excel"
+     
             className="k-button k-button-md k-rounded-md k-button-solid k-button-solid-primary"
             onClick={excelExport}
             class="btn btn-secondary" style={{ backgroundColor: "rgb(52, 109, 165)" }}>

@@ -1,8 +1,7 @@
-import axios from 'axios';
+
 import react, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { userContext } from './UserContext';
-
 
 export default function FormChild(props) {
     
@@ -10,12 +9,8 @@ export default function FormChild(props) {
     var x = props.x
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const arrCtx = useContext(userContext);
-
-
-
     return (
-         <div>
-            
+         <div>          
                 <input input placeholder="שם פרטי" required type="text" onBlur={(e) => {
                  arrCtx.childArr[index].name = e.target.value }} />
                 <input placeholder="מספר זהות" required type="text" minLength="9" pattern="[0-9]*" maxLength="9" onBlur={(e) =>

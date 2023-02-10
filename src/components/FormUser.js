@@ -1,17 +1,9 @@
 import axios from 'axios';
 import react, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import InstructionPage from './InstructionPage';
-import Routers from './Routers';
 import FormChild from './FormChild';
 import { userContext } from './UserContext';
 import { useNavigate } from 'react-router';
-import FileSaver, { saveAs } from 'file-saver';
-import { utils, write, writeFile } from 'xlsx';
-import XLSX from 'sheetjs-style'
-import Excel from './Excel';
-
-
 
 export default function FormUser() {
     const navigate = useNavigate()
@@ -22,7 +14,6 @@ export default function FormUser() {
     const [isS, setIsS] = useState(false)
     var userId;
     var s = false;
-
 
     async function onSubmit(data) {
         console.log(data);
@@ -50,15 +41,6 @@ export default function FormUser() {
         navigate('/success')
     }
 
-    const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8'
-    const fileExtention = 'xlsx';
-    const exportToExcel = async () => {
-        const ws = utils.json_to_sheet(JSON.stringify(ctx))
-        const wb = { sheets: { data: 'ws' }, sheetNames: ['data'] }
-        const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'arrary' })
-        const data = new Blob([excelBuffer], { type: fileType });
-        FileSaver.saveAs(data, "fileName" + fileExtention);
-    }
     return (
 
         <div>
@@ -116,18 +98,14 @@ export default function FormUser() {
 
                             ctx.childArr.map((x, index) =>
 
-
                                 <div key={index}>
                                     {
                                         <FormChild key={index} index={index} x={x} isNew={true} />}
                                 </div>)
                         }
-
-
                         <button class="btn btn-secondary btn-sm" onClick={() => { ctx.childArr.push({ name: '', birth: '', id: '' }); setIsShow(isShow ? false : true); console.log(ctx.childArr) }}>להכנסת ילד נוסף</button>
                     </div>}
                 </div>
-
                 <div class="mb-3 submit" >
                     <input type="submit" style={{ backgroundColor: "rgb(52, 109, 165)", right: " 30px" }} class="btn btn-primary btn-lg" />
                 </div>
